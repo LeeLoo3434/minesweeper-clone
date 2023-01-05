@@ -1,0 +1,70 @@
+button {
+    width: 100px;
+    height: 40px;
+    background-color: lightgray;
+    border-radius: 30px;
+    text-align: center;
+    margin: 0 40px 0 40px;
+}
+
+#board {
+    width: 420px;
+    height: 420px;
+    border: 5px solid black;
+    background-color: lightgray;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#board div {
+    width: 40px;
+    height: 40px; 
+    border: 1px solid whitesmoke;
+
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#end-result {
+    height: 40px
+}
+
+.tile-clicked {
+    background: gray;
+}
+
+.m1 {
+    color: blue;
+}
+
+.m2 {
+    color: green; 
+}
+
+.m3 {
+    color: red; 
+}
+
+.m4 {
+    color:purple; 
+}
+
+.m5 {
+    color: brown; 
+}
+
+.m6 {
+    color: teal; 
+}
+
+.m7 {
+    color: maroon;
+}
+
+.m8 {
+    color: turquoise;
+}

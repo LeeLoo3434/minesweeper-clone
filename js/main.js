@@ -43,7 +43,7 @@ function setFlame () {
         document.getElementById("flame-button").style.backgroundColor = "lightgray";
     } else {
         flameEnabled = true;
-        document.getElementById("flame-button").style.backgroundColor = "darkgray";
+        document.getElementById("flame-button").style.backgroundColor = "orange";
     }
 }
 
@@ -83,7 +83,7 @@ function clickTile () {
     let coords = tile.id.split("-");                        
     let x = parseInt(coords[0]);     
     let y = parseInt(coords[1]);
-    checkMine(x, y);
+    checkCop(x, y);
 }
 
 function setMines () {          
@@ -100,7 +100,7 @@ function setMines () {
     }
 }
 
-function checkMine (x, y) {
+function checkCop (x, y) {
     if (x < 0 || x >= rows || y < 0 || y >= cols) {   
         return;
     }
@@ -112,34 +112,34 @@ function checkMine (x, y) {
     board[x][y].classList.add("tile-clicked");     
     tilesClicked += 1;
 
-    let minesFound = 0;
+    let copsFound = 0;
 
-    minesFound += checkTile(x-1, y-1);  
-    minesFound += checkTile(x-1, y);    
-    minesFound += checkTile(x-1, y+1);  
+    copsFound += checkTile(x-1, y-1);  
+    copsFound += checkTile(x-1, y);    
+    copsFound += checkTile(x-1, y+1);  
 
-    minesFound += checkTile(x, y-1);     
-    minesFound += checkTile(x, y+1);      
+    copsFound += checkTile(x, y-1);     
+    copsFound += checkTile(x, y+1);      
 
-    minesFound += checkTile(x+1, y-1);   
-    minesFound += checkTile(x+1, y);    
-    minesFound += checkTile(x+1, y+1);  
+    copsFound += checkTile(x+1, y-1);   
+    copsFound += checkTile(x+1, y);    
+    copsFound += checkTile(x+1, y+1);  
 
-    if (minesFound > 0) {                   
-        board[x][y].innerText = minesFound  
-        board[x][y].classList.add("m" + minesFound.toString());
+    if (copsFound > 0) {                   
+        board[x][y].innerText = copsFound  
+        board[x][y].classList.add("m" + copsFound.toString());
     }
     else {
-        checkMine(x-1, y-1);
-        checkMine(x-1, y);
-        checkMine(x-1, y+1);
+        checkCop(x-1, y-1);
+        checkCop(x-1, y);
+        checkCop(x-1, y+1);
 
-        checkMine(x, y-1);
-        checkMine(x, y+1);
+        checkCop(x, y-1);
+        checkCop(x, y+1);
 
-        checkMine(x+1, y-1);
-        checkMine(x+1, y);
-        checkMine(x+1, y+1);
+        checkCop(x+1, y-1);
+        checkCop(x+1, y);
+        checkCop(x+1, y+1);
     }
     checkWin()
 }
@@ -170,7 +170,7 @@ function revealCops() {
 function checkWin() {
     if ((tilesClicked === 90 || tilesClicked === rows * cols - copsCount)) {
         document.getElementById("cop-count").innerText = "🌈🌈🌈"
-        winResultEl.innerText = "You Win ";
+        winResultEl.innerText = "You Win 🥳 ";
         gameOver = true;
     }
 }

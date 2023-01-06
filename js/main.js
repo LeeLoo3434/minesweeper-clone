@@ -1,23 +1,23 @@
 const board = [];
 
-let rows, cols, mineCount, flagEnabled, tilesClicked, gameOver
+let rows, cols, copsCount, flameEnabled, tilesClicked, gameOver
 
-let mineLocation = [];
+let copsLocation = [];
 
 const winResultEl = document.querySelector("h2")
 const resetBtnEl = document.getElementById("reset")
-const flagBtnEl = document.getElementById("flag-button")
-const mineTotal = document.getElementById("mine-count")
+const flameBtnEl = document.getElementById("flame-button")
+const copsTotal = document.getElementById("cop-count")
 
 resetBtnEl.addEventListener("click", handleResetClick)
 
-flagBtnEl.addEventListener("click", setFlag)
+flameBtnEl.addEventListener("click", setFlame)
 
 function startGame() {                                                                    
     rows = 10;
     cols = 10;
-    mineCount = 10;
-    flagEnabled = false;
+    copsCount = 10;
+    flameEnabled = false;
     tilesClicked = 0;
     gameOver = false;
 
@@ -37,13 +37,13 @@ function startGame() {
     render();
 }
 
-function setFlag () {                                                              
-    if (flagEnabled) {
-        flagEnabled = false;
-        document.getElementById("flag-button").style.backgroundColor = "lightgray";
+function setFlame () {                                                              
+    if (flameEnabled) {
+        flameEnabled = false;
+        document.getElementById("flame-button").style.backgroundColor = "lightgray";
     } else {
-        flagEnabled = true;
-        document.getElementById("flag-button").style.backgroundColor = "darkgray";
+        flameEnabled = true;
+        document.getElementById("flame-button").style.backgroundColor = "darkgray";
     }
 }
 
@@ -57,25 +57,26 @@ function clickTile () {
         return;
     }
     let tile = this;                                                              
-    if (flagEnabled) {
-        if (!tile.classList.contains("flag")) {
-            tile.classList.add("flag");
-            tile.innerHTML = "🚩";
-            mineCount--;
+    if (flameEnabled) {
+        if (!tile.classList.contains("flame")) {
+            tile.classList.add("flame");
+            tile.innerHTML = "🔥";
+            copsCount--;
         } else {
-            tile.classList.remove("flag");
+            tile.classList.remove("flame");
             tile.innerHTML = "";
-            mineCount++;
+            copsCount++;
         }
         render();
         checkWin();
         return;
     }
-    if (mineLocation.includes(tile.id)) {                                         
+    if (copsLocation.includes(tile.id)) {                                         
         winResultEl.innerText = "Game Over";
-        document.getElementById("mine-count").innerText = "😔";
+        winResultEl.style.color = 'red'
+        document.getElementById("cop-count").innerText = "🚔 🚔 🚔";
         gameOver = true;
-        revealMines();
+        revealCops();
         return;
     }
 
@@ -86,14 +87,14 @@ function clickTile () {
 }
 
 function setMines () {          
-    let mineLeft = mineCount;
+    let mineLeft = copsCount;
     while (mineLeft > 0) {                          
         let x = Math.floor(Math.random() * rows)    
         let y = Math.floor(Math.random() * cols)   
         let id = x.toString() + "-" + y.toString(); 
 
-        if (!mineLocation.includes(id)) {           
-            mineLocation.push (id)                  
+        if (!copsLocation.includes(id)) {           
+            copsLocation.push (id)                  
             mineLeft -= 1;                          
         }
     }
@@ -104,7 +105,7 @@ function checkMine (x, y) {
         return;
     }
 
-    if ((board[x][y].classList.contains("tile-clicked") || board[x][y].classList.contains("flag"))) {  
+    if ((board[x][y].classList.contains("tile-clicked") || board[x][y].classList.contains("flame"))) {  
         return;
     }
 
@@ -148,18 +149,18 @@ function checkTile (x, y) {
         return 0;
     }
     
-    if (mineLocation.includes(x.toString() + "-" + y.toString())) {
+    if (copsLocation.includes(x.toString() + "-" + y.toString())) {
         return 1;
     }
     return 0;
 }
 
-function revealMines() {
+function revealCops() {
     for (let x = 0; x < rows; x++) {       
         for (let y = 0; y < cols; y++) {
             let tile = board[x][y]        
-            if (mineLocation.includes(tile.id)) {  
-                tile.innerText = "💣"      
+            if (copsLocation.includes(tile.id)) {  
+                tile.innerText = "👮"      
                 tile.style.backgroundColor = "red"
             }
         }
@@ -167,9 +168,9 @@ function revealMines() {
 }
 
 function checkWin() {
-    if ((tilesClicked === 90 || tilesClicked === rows * cols - mineCount)) {
-        document.getElementById("mine-count").innerText = "😊"
-        winResultEl.innerText = "You Win!";
+    if ((tilesClicked === 90 || tilesClicked === rows * cols - copsCount)) {
+        document.getElementById("cop-count").innerText = "🌈🌈🌈"
+        winResultEl.innerText = "You Win ";
         gameOver = true;
     }
 }
@@ -177,5 +178,5 @@ function checkWin() {
 startGame()
 
 function render() {
-    mineTotal.innerText = mineCount
+    copsTotal.innerText = copsCount
 }

@@ -1,27 +1,49 @@
 button {
     width: 100px;
     height: 40px;
-    background-color: lightgray;
+    background-color: whitesmoke;
     border-radius: 30px;
     text-align: center;
     margin: 0 40px 0 40px;
+}
+body {
+    background: linear-gradient(0deg, black , rgb(45, 43, 43));
 }
 
 #board {
     width: 420px;
     height: 420px;
-    border: 5px solid black;
-    background-color: lightgray;
+    border: 10px solid black;
+    border-image: linear-gradient(0deg, #12c2e9, #c471ed, #f64f59) 1;
+    background: linear-gradient(0deg, black , rgb(45, 43, 43));
 
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
+h1 {
+    font-size: 30px;
+            background: linear-gradient(to left,
+                    #12c2e9 ,
+                    #c471ed,
+                    red);
+            -webkit-background-clip: text;
+            color: transparent;
+    text-align: center;
+}
+.btn {
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+}
+h2{
+    text-align: center;
+}
 
 #board div {
     width: 40px;
     height: 40px; 
-    border: 1px solid whitesmoke;
+    border: 1px solid  #c471ed;
 
     font-size: 25px;
     display: flex;
@@ -34,7 +56,7 @@ button {
 }
 
 .tile-clicked {
-    background: gray;
+    background: #b2a1bb;
 }
 
 .m1 {

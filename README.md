@@ -17,3 +17,8 @@ The game is over if you reveal a cop.
 A game over message is rendered + the number of cops changes to cop cars. 
 ![2D744467-03FA-4631-90D9-E2D59FBA5DA8](https://user-images.githubusercontent.com/113068944/211087137-38e28fce-37a2-4a62-bd32-a6bab09878ce.jpeg)
 I have not been able to successfully win the game myself -  but a win message is rendered with rainbow emoji's. 
+
+Technologies Used: HTML, CSS, JavaScript. 
+
+Next Steps: Upgrade some styling (make the border rotate with the first click) - Add a timer that starts with the first click. 
+Add logic so the first click cannot reveal a cop. (if your first click is above a cop, the cop is moved to the top left corner. If this corner already contains a mine, the next available square to the right is used.)

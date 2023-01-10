@@ -22,3 +22,5 @@ Technologies Used: HTML, CSS, JavaScript.
 
 Next Steps: Upgrade some styling (make the border rotate with the first click) - Add a timer that starts with the first click. 
 Add logic so the first click cannot reveal a cop. (if your first click is above a cop, the cop is moved to the top left corner. If this corner already contains a mine, the next available square to the right is used.)
+
+https://leeloo3434.github.io/minesweeper-clone/
